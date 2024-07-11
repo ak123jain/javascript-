@@ -1,0 +1,24 @@
+html , body{
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+}
+
+.bulb{
+    height: 50%;
+    width: 341px;
+    background: rgb(100, 51, 51);
+    position: relative;
+}
+
+.bulbcontainer{
+    height: 341px;
+    width: 341px;    
+}
+
+.bulbcontainer img{
+    height: 150%;
+    margin-left: 100%;
+}
+
+
