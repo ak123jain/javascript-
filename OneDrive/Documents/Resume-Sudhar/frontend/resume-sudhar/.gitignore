@@ -22,3 +22,29 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore VS Code settings and extensions
+.vscode/
+
+# Ignore Bash history
+.bash_history
+
+# Ignore node modules and build files
+node_modules/
+dist/
+build/
+
+# Ignore log files
+*.log
+
+
+git rm -r --cached ../../../../../.vscode
+git rm -r --cached ../../../../../.bash_history
+git rm -r --cached node_modules
