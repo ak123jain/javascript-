@@ -1,6 +1,6 @@
-"use client";
+ "use client";
 import React from "react";
-import  {motion}  from "framer-motion";
+import { motion } from "framer-motion";
 
 const transition = {
   type: "spring",
@@ -59,31 +59,18 @@ export const Menu = ({ setActive, children }) => {
 export const ProductItem = ({ title, description, href, src }) => {
   return (
     <a href={href} className="flex space-x-2">
-      <img
-        src={src}
-        width={140}
-        height={70}
-        alt={title}
-        className="shrink-0 rounded-md shadow-2xl"
-      />
+      <img src={src} width={140} height={70} alt={title} className="shrink-0 rounded-md shadow-2xl" />
       <div>
-        <h4 className="text-xl font-bold mb-1 text-black dark:text-white">
-          {title}
-        </h4>
-        <p className="text-neutral-700 text-sm max-w-[10rem] dark:text-neutral-300">
-          {description}
-        </p>
+        <h4 className="text-xl font-bold mb-1 text-black dark:text-white">{title}</h4>
+        <p className="text-neutral-700 text-sm max-w-[10rem] dark:text-neutral-300">{description}</p>
       </div>
     </a>
   );
 };
 
-export const HoveredLink = ({ children, href }) => {
+export const HoveredLink = ({ children, ...rest }) => {
   return (
-    <a
-      href={href}
-      className="text-neutral-700 dark:text-neutral-200 hover:text-black"
-    >
+    <a {...rest} className="text-neutral-700 dark:text-neutral-200 hover:text-black">
       {children}
     </a>
   );
