@@ -1,6 +1,6 @@
 import React from "react";
 import templete from "../assets/templete.png";
-import video from "../assets/video.gif";
+// import video from "../assets/video.gif";
 
 const Template = () => {
   return (
