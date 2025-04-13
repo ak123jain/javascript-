@@ -1,9 +1,8 @@
  
 
 
-
 // import React, { useState, useEffect } from 'react';
-// import { Menu, X, User, LogOut, Sparkles, LogIn } from 'lucide-react';
+// import { Menu, X, User, LogOut, Sparkles, LogIn, UserPlus } from 'lucide-react';
 // import { motion, AnimatePresence } from 'framer-motion';
 // import { Link } from 'react-router-dom';
 
@@ -16,10 +15,7 @@
 //   const [activeSection, setActiveSection] = useState('home');
 
 //   useEffect(() => {
-//     const handleScroll = () => {
-//       setScrolled(window.scrollY > 50);
-//     };
-
+//     const handleScroll = () => setScrolled(window.scrollY > 50);
 //     const handleSectionScroll = () => {
 //       const sections = navLinks.map(link => link.toLowerCase());
 //       const scrollPosition = window.scrollY + 100;
@@ -59,14 +55,15 @@
 //   }, [showDropdown]);
 
 //   return (
-//     <header
+//     <header 
 //       className={`fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-7xl z-50 transition-all duration-300 text-white rounded-2xl shadow-lg ${
 //         scrolled ? 'bg-gray-900/95 backdrop-blur-md py-2' : 'bg-gray-900/80 py-4'
 //       }`}
 //     >
 //       <div className="px-4 sm:px-6 lg:px-8">
 //         <div className="flex justify-between items-center">
-//           <motion.div
+//           {/* Logo */}
+//           <motion.div 
 //             className="flex items-center space-x-2 text-2xl font-bold"
 //             initial={{ opacity: 0, x: -20 }}
 //             animate={{ opacity: 1, x: 0 }}
@@ -80,6 +77,7 @@
 //             </span>
 //           </motion.div>
 
+//           {/* Desktop nav */}
 //           <nav className="hidden md:flex space-x-8">
 //             {navLinks.map((link) => (
 //               <motion.a
@@ -107,6 +105,7 @@
 //             ))}
 //           </nav>
 
+//           {/* Buttons */}
 //           <div className="flex items-center space-x-4">
 //             <motion.button
 //               className="hidden md:flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium text-sm hover:shadow-lg hover:shadow-pink-500/30 transition-all"
@@ -119,6 +118,7 @@
 //               Start Swapping
 //             </motion.button>
 
+//             {/* User dropdown */}
 //             <div className="relative hidden md:block user-dropdown-container">
 //               <motion.button
 //                 className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 hover:shadow-md hover:shadow-pink-500/30 transition-all"
@@ -131,69 +131,43 @@
 //               >
 //                 <User size={20} className="text-white" />
 //               </motion.button>
-
 //               <AnimatePresence>
 //                 {showDropdown && (
-//                   <motion.div
+//                   <motion.div 
 //                     className="absolute right-0 mt-2 w-48 bg-gray-800/95 backdrop-blur-md shadow-xl rounded-xl py-2 border border-white/10"
 //                     initial={{ opacity: 0, y: 10, scale: 0.95 }}
 //                     animate={{ opacity: 1, y: 0, scale: 1 }}
 //                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
 //                     transition={{ duration: 0.2 }}
 //                   >
-//                     {['Profile', 'Login', 'Register', 'Logout'].map((item, index) => {
-//                       const icon =
-//                         item === 'Profile' ? <User size={16} className="mr-2 text-pink-400" /> :
-//                         item === 'Login' ? <LogIn size={16} className="mr-2 text-green-400" /> :
-//                         item === 'Register' ? <Sparkles size={16} className="mr-2 text-yellow-400" /> :
-//                         <LogOut size={16} className="mr-2 text-cyan-400" />;
-
-//                       const content = (
-//                         <>
-//                           {icon}
-//                           {item}
-//                         </>
-//                       );
-
-//                       if (item === 'Login' || item === 'Register') {
-//                         const route = item === 'Login' ? '/login' : '/register';
-//                         return (
-//                           <motion.div
-//                             key={item}
-//                             initial={{ opacity: 0, x: -10 }}
-//                             animate={{ opacity: 1, x: 0 }}
-//                             transition={{ delay: index * 0.05 }}
-//                             whileHover={{ x: 5 }}
-//                           >
-//                             <Link
-//                               to={route}
-//                               className="flex items-center px-4 py-2 text-sm text-white hover:bg-gray-700/50 transition-all"
-//                             >
-//                               {content}
-//                             </Link>
-//                           </motion.div>
-//                         );
-//                       }
-
-//                       return (
-//                         <motion.a
-//                           key={item}
-//                           href={`#${item.toLowerCase()}`}
+//                     {[
+//                       { label: 'Profile', icon: <User size={16} className="mr-2 text-pink-400" />, to: '/profile' },
+//                       { label: 'Login', icon: <LogIn size={16} className="mr-2 text-green-400" />, to: '/login' },
+//                       { label: 'Register', icon: <UserPlus size={16} className="mr-2 text-yellow-400" />, to: '/register' },
+//                       { label: 'Logout', icon: <LogOut size={16} className="mr-2 text-cyan-400" />, to: '/logout' },
+//                     ].map((item, index) => (
+//                       <motion.div
+//                         key={item.label}
+//                         initial={{ opacity: 0, x: -10 }}
+//                         animate={{ opacity: 1, x: 0 }}
+//                         transition={{ delay: index * 0.05 }}
+//                         whileHover={{ x: 5 }}
+//                       >
+//                         <Link
+//                           to={item.to}
 //                           className="flex items-center px-4 py-2 text-sm text-white hover:bg-gray-700/50 transition-all"
-//                           initial={{ opacity: 0, x: -10 }}
-//                           animate={{ opacity: 1, x: 0 }}
-//                           transition={{ delay: index * 0.05 }}
-//                           whileHover={{ x: 5 }}
 //                         >
-//                           {content}
-//                         </motion.a>
-//                       );
-//                     })}
+//                           {item.icon}
+//                           {item.label}
+//                         </Link>
+//                       </motion.div>
+//                     ))}
 //                   </motion.div>
 //                 )}
 //               </AnimatePresence>
 //             </div>
 
+//             {/* Mobile menu toggle */}
 //             <motion.button
 //               className="md:hidden p-2 rounded-md bg-gray-800/80 hover:bg-pink-800/80 transition-all"
 //               onClick={toggleMenu}
@@ -215,12 +189,51 @@
 //           </div>
 //         </div>
 //       </div>
+
+//       {/* Mobile Nav Dropdown */}
+//       <AnimatePresence>
+//         {isOpen && (
+//           <motion.nav
+//             initial={{ opacity: 0, height: 0 }}
+//             animate={{ opacity: 1, height: 'auto' }}
+//             exit={{ opacity: 0, height: 0 }}
+//             transition={{ duration: 0.3, ease: "easeInOut" }}
+//             className="md:hidden px-4 py-4 bg-gray-900/95 backdrop-blur-lg shadow-xl border-t border-white/10 rounded-b-2xl"
+//           >
+//             {navLinks.map((link, index) => (
+//               <motion.a
+//                 key={link}
+//                 href={`#${link.toLowerCase()}`}
+//                 className={`block py-3 text-lg font-medium border-b border-gray-800 ${
+//                   activeSection === link.toLowerCase() ? 'text-pink-400' : 'text-white'
+//                 } hover:text-pink-400 transition-all`}
+//                 onClick={() => setIsOpen(false)}
+//                 initial={{ opacity: 0, x: -20 }}
+//                 animate={{ opacity: 1, x: 0 }}
+//                 transition={{ delay: index * 0.1 }}
+//                 whileHover={{ x: 5 }}
+//               >
+//                 {link}
+//               </motion.a>
+//             ))}
+//             <motion.button
+//               className="mt-4 w-full py-3 rounded-lg bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium text-base hover:shadow-lg hover:shadow-pink-500/30 transition-all"
+//               onClick={() => setIsOpen(false)}
+//               initial={{ opacity: 0, y: 20 }}
+//               animate={{ opacity: 1, y: 0 }}
+//               transition={{ delay: navLinks.length * 0.1 }}
+//               whileTap={{ scale: 0.95 }}
+//             >
+//               Start Swapping
+//             </motion.button>
+//           </motion.nav>
+//         )}
+//       </AnimatePresence>
 //     </header>
 //   );
 // };
 
 // export default Navbar;
-
 
 
 import React, { useState, useEffect } from 'react';
@@ -411,46 +424,6 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-
-      {/* Mobile Nav Dropdown */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.nav
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden px-4 py-4 bg-gray-900/95 backdrop-blur-lg shadow-xl border-t border-white/10 rounded-b-2xl"
-          >
-            {navLinks.map((link, index) => (
-              <motion.a
-                key={link}
-                href={`#${link.toLowerCase()}`}
-                className={`block py-3 text-lg font-medium border-b border-gray-800 ${
-                  activeSection === link.toLowerCase() ? 'text-pink-400' : 'text-white'
-                } hover:text-pink-400 transition-all`}
-                onClick={() => setIsOpen(false)}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ x: 5 }}
-              >
-                {link}
-              </motion.a>
-            ))}
-            <motion.button
-              className="mt-4 w-full py-3 rounded-lg bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium text-base hover:shadow-lg hover:shadow-pink-500/30 transition-all"
-              onClick={() => setIsOpen(false)}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: navLinks.length * 0.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Start Swapping
-            </motion.button>
-          </motion.nav>
-        )}
-      </AnimatePresence>
     </header>
   );
 };
